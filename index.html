@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carousel</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        .carousel {
+            width: 400px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-image {
+            width: 400px;
+            height: 200px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .carousel-control {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <div class="carousel-images">
+            <img class="carousel-image" src="1.jpg" alt="Image 1">
+            <img class="carousel-image" src="2.jpg" alt="Image 2">
+            <img class="carousel-image" src="3.png" alt="Image 3">
+            </div>
+        <div   
+ class="carousel-controls">
+            <span class="carousel-control" onclick="prevImage()">&#10074;</span>
+            <span class="carousel-control" onclick="nextImage()">&#10076;</span>
+        </div>
+    </div>
+
+    <script>
+        const carouselImages = document.querySelector('.carousel-images');
+        let currentImage = 0;
+        const totalImages = carouselImages.children.length;
+
+        function nextImage() {
+            currentImage = (currentImage + 1) % totalImages;
+            carouselImages.style.transform = `translateX(-${currentImage * 400}px)`;
+        }
+
+        function prevImage() {
+            currentImage = (currentImage - 1 + totalImages) % totalImages;
+            carouselImages.style.transform = `translateX(-${currentImage * 400}px)`;
+        }
+    </script>
+</body>
+</html>
